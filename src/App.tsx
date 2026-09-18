@@ -2,18 +2,23 @@
 // import Hero from "./Hero";
 // import Navbar from "./Navbar";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import SideBar from "./SideBar";
 import TecList from "./TecList";
+import type { Itecnologis } from "./types";
 
 const fetchTecnology = async (): Promise<Itecnologis[]> => {
   const res = await fetch("/public/data.json");
   const data = await res.json();
   return data;
 };
+const tecPromise = fetchTecnology();
 
 const App = () => {
-  const tecPromise = fetchTecnology();
+  const [save,setSave] = useState<Itecnologis[]>([])
+  const handleSaveBook =()=>{
+    
+  }
   return (
     <>
       {/* <Navbar />
@@ -39,9 +44,9 @@ const App = () => {
             {/* TecList Component */}
             <Suspense fallback={<div>Loading....</div>}>
               <TecList tecPromise={tecPromise} />
-            </Suspense>
             {/* Sidebar Component */}
             <SideBar />
+            </Suspense>
           </div>
         </section>
       </main>
