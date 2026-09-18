@@ -8,7 +8,7 @@ interface TecCardProps{
     setSelectToStack:Dispatch<SetStateAction<Itecnologis[]>>
 }
 const TecCard = ({singleTecnologi,selectToStack,setSelectToStack}:TecCardProps) => {
-    const {id,name,category,description,icon,rating,difficulty,badge} = singleTecnologi
+    const {name,category,description,icon,rating,difficulty,badge} = singleTecnologi
 
   
        const isselected = selectToStack.some((tecnologi) =>tecnologi.id === singleTecnologi.id);
