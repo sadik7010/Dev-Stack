@@ -8,7 +8,7 @@ import TecList from "./TecList";
 import type { Itecnologis } from "./types";
 
 const fetchTecnology = async (): Promise<Itecnologis[]> => {
-  const res = await fetch("/public/data.json");
+  const res = await fetch("/data.json");
   const data = await res.json();
   return data;
 };
