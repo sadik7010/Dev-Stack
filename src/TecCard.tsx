@@ -1,10 +1,28 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { Itecnologis } from "./types";
+import { toast } from "react-toastify";
 
 interface TecCardProps{
-    singleTecnologi:Itecnologis
+    singleTecnologi:Itecnologis;
+    selectToStack:Itecnologis[],
+    setSelectToStack:Dispatch<SetStateAction<Itecnologis[]>>
 }
-const TecCard = ({singleTecnologi}:TecCardProps) => {
+const TecCard = ({singleTecnologi,selectToStack,setSelectToStack}:TecCardProps) => {
     const {id,name,category,description,icon,rating,difficulty,badge} = singleTecnologi
+
+  
+       const isselected = selectToStack.some((tecnologi) =>tecnologi.id === singleTecnologi.id);
+
+       const handleAddTecnology=()=> {
+        if(isselected){
+          toast.warning(`${name} is already in your stack`);
+          return;
+        }
+        setSelectToStack([...selectToStack,singleTecnologi]);
+
+        toast.success(`${name} added to your stack`);
+       }
+
     return (
          <div className="card bg-base-100 border border-base-200 shadow-sm rounded-2xl p-6 w-full">
 
@@ -60,10 +78,10 @@ const TecCard = ({singleTecnologi}:TecCardProps) => {
 
       {/* Button */}
       <button
-        
+        onClick={handleAddTecnology}
         className="btn btn-neutral w-full mt-5 rounded-xl"
       >
-        {"Add to Stack"}
+        {isselected ? "✓ Added to Stack" : "Add to Stack" }
       </button>
 
     </div>

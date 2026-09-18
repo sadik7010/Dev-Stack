@@ -15,10 +15,8 @@ const fetchTecnology = async (): Promise<Itecnologis[]> => {
 const tecPromise = fetchTecnology();
 
 const App = () => {
-  const [save,setSave] = useState<Itecnologis[]>([])
-  const handleSaveBook =()=>{
-    
-  }
+ const [selectToStack,setSelectToStack]=useState<Itecnologis[]>([])
+
   return (
     <>
       {/* <Navbar />
@@ -40,12 +38,12 @@ const App = () => {
               Pick one technology per category to build your ideal stack.
             </p>
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 items-start">
             {/* TecList Component */}
             <Suspense fallback={<div>Loading....</div>}>
-              <TecList tecPromise={tecPromise} />
+              <TecList tecPromise={tecPromise} selectToStack={selectToStack}  setSelectToStack={setSelectToStack}  />
             {/* Sidebar Component */}
-            <SideBar />
+            <SideBar selectToStack={selectToStack}  setSelectToStack={setSelectToStack} />
             </Suspense>
           </div>
         </section>
