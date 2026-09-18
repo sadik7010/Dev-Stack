@@ -1,6 +1,6 @@
-// import Footer from "./Footer";
-// import Hero from "./Hero";
-// import Navbar from "./Navbar";
+import Footer from "./Footer";
+import Hero from "./Hero";
+import Navbar from "./Navbar";
 
 import { Suspense, useState } from "react";
 import SideBar from "./SideBar";
@@ -19,11 +19,11 @@ const App = () => {
 
   return (
     <>
-      {/* <Navbar />
-      <Hero />
+      <Navbar />
+     
+       <Hero />
       
       
-      <Footer/> */}
       <main>
         <section className="container mx-auto my-5">
           <div className="my-5">
@@ -40,14 +40,20 @@ const App = () => {
           </div>
           <div className="grid grid-cols-4 gap-4 items-start">
             {/* TecList Component */}
-            <Suspense fallback={<div>Loading....</div>}>
+           <div className="col-span-3">
+             <Suspense fallback={<div className="flex min-h-screen items-center justify-center">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>}>
               <TecList tecPromise={tecPromise} selectToStack={selectToStack}  setSelectToStack={setSelectToStack}  />
             {/* Sidebar Component */}
-            <SideBar selectToStack={selectToStack}  setSelectToStack={setSelectToStack} />
             </Suspense>
+           </div>
+            <div className="col-span-1"><SideBar selectToStack={selectToStack}  setSelectToStack={setSelectToStack} /></div>
           </div>
         </section>
       </main>
+
+      <Footer/>
     </>
   );
 };
